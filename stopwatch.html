@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0%;
+            padding: 0%;
+            background: linear-gradient(to right, #9cecfb, #65c7f7, #0052d4);
+
+        }
+
+        .container {
+            margin: 100px auto;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 4em;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #fff;
+        }
+
+        p {
+            font-size: 5em;
+            color: #fff;
+
+        }
+
+        button {
+            border: none;
+            padding: 18px 10px;
+            font-size: 1.2em;
+            width: 180px;
+            margin: auto 10px;
+
+        }
+
+        button:hover {
+            cursor: pointer;
+            background-color: #65c7f7;
+            color: #fff;
+            transition: 0.4s;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Stop Watch</h1>
+        <p><span id="second">00</span>:<span id="tens">00</span></p>
+        <button id="btn-start">Start</button>
+        <button id="btn-stop">Stop</button>
+        <button id="btn-reset">Reset</button>
+    </div>
+
+
+    <script>
+        var seconds =00;
+        var tens = 00;
+        var outputseconds= document.getElementById("second");
+        var outputTens= document.getElementById("tens");
+        var buttonStart =document.getElementById("btn-start");
+        var buttonStop =document.getElementById("btn-stop");
+        var buttonReset =document.getElementById("btn-reset");
+        var Interval;
+
+        buttonStart.addEventListener('click', ()=>{
+            clearInterval(Interval);
+            Interval = setInterval(startTime, 10);
+        });
+
+        buttonStop.addEventListener('click', ()=>{
+            clearInterval(Interval);
+            // Interval = setInterval(startTime, 10);
+        });
+
+        buttonReset.addEventListener('click', ()=>{
+            clearInterval(Interval);
+            tens ="00";
+            seconds ="00";
+            outputseconds.innerHTML =seconds;
+            outputTens.innerHTML = tens;
+            Interval = setInterval(startTime, 0);
+        });
+
+        function startTime(){
+            tens ++;
+            if(tens <=9){
+                outputTens.innerHTML ="0"+tens;
+            }
+            if(tens > 9){
+                outputTens.innerHTML = tens;
+            }
+            if(tens > 99){
+                seconds ++;
+                outputseconds.innerHTML = "0" + seconds;
+                tens = 0;
+                outputTens.innerHTML ="0" + tens;
+            }
+
+            if(seconds >9){
+                outputseconds.innerHTML = seconds;
+            }
+        }
+</script>
+</body>
+
+</html>
